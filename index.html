@@ -204,86 +204,88 @@
     </style>
 </head>
 <body>
+    <!-- Password protection screen -->
     <div class="password-screen" id="passwordScreen">
         <div class="password-form">
-            <h2>Введіть пароль для доступу</h2>
-            <input type="password" class="password-input" id="passwordInput" placeholder="Введіть пароль">
-            <button class="password-button" onclick="checkPassword()">Увійти</button>
-            <p class="error-message" id="errorMessage">Невірний пароль</p>
+            <h2>Enter password to access</h2>
+            <input type="password" class="password-input" id="passwordInput" placeholder="Enter password">
+            <button class="password-button" onclick="checkPassword()">Login</button>
+            <p class="error-message" id="errorMessage">Incorrect password</p>
         </div>
     </div>
 
     <div class="container">
-        <!-- Перший урок - Українська мова -->
+        <!-- First lesson - Ukrainian language -->
         <div class="card">
-            <h1 class="title">Інформація про урок</h1>
+            <h1 class="title">Lesson Information</h1>
             
             <div class="info-block">
-                <h2 class="subtitle">Назва уроку:</h2>
+                <h2 class="subtitle">Lesson name:</h2>
                 <p class="text">Українська мова</p>
             </div>
             
             <div class="info-block">
-                <h2 class="subtitle">Викладач:</h2>
-                <p class="text">Людмила Іванівна Крамар</p>
+                <h2 class="subtitle">Teacher:</h2>
+                <p class="text">Людмила Іванівна</p>
             </div>
             
             <div class="info-block">
-                <h2 class="subtitle">Посилання на Zoom:</h2>
-                <a href="zoommtg://zoom.us/join?confno=79729201460" 
+                <h2 class="subtitle">Zoom link:</h2>
+                <a href="zoommtg://zoom.us/join?confno=1234567890" 
                    class="link"
-                   onclick="window.open('zoommtg://zoom.us/join?confno=79729201460', '_blank'); return false;">
-                    Приєднатися до уроку
+                   onclick="window.open('zoommtg://zoom.us/join?confno=1234567890', '_blank'); return false;">
+                    Join the lesson
                 </a>
                 <div id="passwordContainer1" class="hidden">
-                    <p class="password-text">Пароль для входу: <span id="password1">123456</span></p>
+                    <p class="password-text">Password: <span id="password1">123456</span></p>
                 </div>
             </div>
         </div>
 
-        <!-- Другий урок - Англійська мова -->
+        <!-- Second lesson - English language -->
         <div class="card">
-            <h1 class="title">Інформація про урок</h1>
+            <h1 class="title">Lesson Information</h1>
             
             <div class="info-block">
-                <h2 class="subtitle">Назва уроку:</h2>
+                <h2 class="subtitle">Lesson name:</h2>
                 <p class="text">Англійська мова</p>
             </div>
             
             <div class="info-block">
-                <h2 class="subtitle">Викладач:</h2>
-                <p class="text">Дарина Вікторівна Бруско</p>
+                <h2 class="subtitle">Teacher:</h2>
+                <p class="text">Марія Іванівна</p>
             </div>
             
             <div class="info-block">
-                <h2 class="subtitle">Посилання на Zoom:</h2>
-                <a href="zoommtg://zoom.us/join?confno=83644646608" 
+                <h2 class="subtitle">Zoom link:</h2>
+                <a href="zoommtg://zoom.us/join?confno=9876543210" 
                    class="link"
-                   onclick="window.open('zoommtg://zoom.us/join?confno=83644646608', '_blank'); return false;">
-                    Приєднатися до уроку
+                   onclick="window.open('zoommtg://zoom.us/join?confno=9876543210', '_blank'); return false;">
+                    Join the lesson
                 </a>
                 <div id="passwordContainer2" class="hidden">
-                    <p class="password-text">Пароль для входу: <span id="password2">654321</span></p>
+                    <p class="password-text">Password: <span id="password2">654321</span></p>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Accordion with schedule -->
     <div class="schedule-container">
         <div class="accordion">
             <div class="accordion-header" onclick="toggleAccordion()">
-                <span>РОЗКЛАД НА ДИСТАНЦІЙНЕ НАВЧАННЯ 2-А</span>
+                <span>SCHEDULE FOR DISTANCE LEARNING 2-A</span>
                 <span class="arrow">▼</span>
             </div>
             <div class="accordion-content">
                 <table class="schedule-table">
                     <thead>
                         <tr>
-                            <th>ПОНЕДІЛОК</th>
-                            <th>ВІВТОРОК</th>
-                            <th>СЕРЕДА</th>
-                            <th>ЧЕТВЕР</th>
-                            <th>П'ЯТНИЦЯ</th>
+                            <th>MONDAY</th>
+                            <th>TUESDAY</th>
+                            <th>WEDNESDAY</th>
+                            <th>THURSDAY</th>
+                            <th>FRIDAY</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -316,15 +318,15 @@
                             <td>4. Англійська мова</td>
                         </tr>
                         <tr>
-                            <td class="async">5. Фіз. вих. – асинхронно</td>
-                            <td class="async">5. Фіз. вих. – асинхронно</td>
+                            <td class="async">5. Фіз. вих. – asynchronous</td>
+                            <td class="async">5. Фіз. вих. – asynchronous</td>
                             <td></td>
-                            <td class="async">5. Мистецтво – асинхронно</td>
-                            <td class="async">5. ЯПС – асинхронно</td>
+                            <td class="async">5. Мистецтво – asynchronous</td>
+                            <td class="async">5. ЯПС – asynchronous</td>
                         </tr>
                         <tr>
                             <td colspan="5" style="padding-top: 2rem;">
-                                <strong>Час проведення уроків:</strong><br>
+                                <strong>Lesson times:</strong><br>
                                 1. 9.00-9.30<br>
                                 2. 9.40-10.10<br>
                                 3. 10.30-11.00<br>
@@ -339,8 +341,8 @@
     </div>
 
     <script>
-        // Пароль для доступу
-        const ACCESS_PASSWORD = "1234"; // Можна змінити на потрібний пароль
+        // Password for access
+        const ACCESS_PASSWORD = "1234"; // Change to your password
         
         function checkPassword() {
             const input = document.getElementById('passwordInput');
@@ -356,29 +358,30 @@
             }
         }
 
-        // Дозволяємо вводити пароль по Enter
+        // Allow password submit on Enter key
         document.getElementById('passwordInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 checkPassword();
             }
         });
 
-        // Налаштування для першого уроку
-        const password1 = "123456"; // Можна змінити або видалити
+        // Settings for the first lesson
+        const password1 = "123456"; // Change or remove if not needed
         const passwordContainer1 = document.getElementById('passwordContainer1');
         
         if (password1) {
             passwordContainer1.classList.remove('hidden');
         }
 
-        // Налаштування для другого уроку
-        const password2 = "654321"; // Можна змінити або видалити
+        // Settings for the second lesson
+        const password2 = "654321"; // Change or remove if not needed
         const passwordContainer2 = document.getElementById('passwordContainer2');
         
         if (password2) {
             passwordContainer2.classList.remove('hidden');
         }
 
+        // Accordion toggle for schedule
         function toggleAccordion() {
             const content = document.querySelector('.accordion-content');
             const arrow = document.querySelector('.arrow');
