@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Уроки Zoom</title>
+    <style>
+        body {
+            background-color: #f3f4f6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+            padding: 2rem 0;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+            padding: 0 2rem;
+            width: 100%;
+            max-width: 90rem;
+            margin-bottom: 2rem;
+        }
+        .card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            min-width: 28rem;
+        }
+        .title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .info-block {
+            background-color: #f9fafb;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .subtitle {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .text {
+            color: #374151;
+        }
+        .link {
+            display: block;
+            color: #2563eb;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            text-decoration: none;
+        }
+        .link:hover {
+            color: #1e40af;
+        }
+        .password-text {
+            font-size: 0.875rem;
+            color: #4b5563;
+        }
+        .hidden {
+            display: none;
+        }
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+            }
+            .card {
+                width: 100%;
+            }
+        }
+        
+        .schedule-container {
+            width: 100%;
+            max-width: 90rem;
+            padding: 0 2rem;
+        }
+        
+        .accordion {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .accordion-header {
+            background-color: #f3f4f6;
+            padding: 1rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+        
+        .accordion-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .accordion-content.active {
+            max-height: 1000px;
+            padding: 1rem 2rem;
+        }
+        
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .schedule-table th,
+        .schedule-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .schedule-table th {
+            background-color: #f9fafb;
+            font-weight: 600;
+        }
+        
+        .schedule-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .time-column {
+            width: 120px;
+        }
+        
+        .async {
+            color: #6b7280;
+            font-style: italic;
+        }
+        
+        .arrow {
+            transition: transform 0.3s ease;
+        }
+        
+        .arrow.active {
+            transform: rotate(180deg);
+        }
+        
+        .password-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .password-form {
+            background-color: #f3f4f6;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .password-input {
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.25rem;
+            margin: 1rem 0;
+            width: 200px;
+        }
+        
+        .password-button {
+            background-color: #2563eb;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+        }
+        
+        .password-button:hover {
+            background-color: #1e40af;
+        }
+        
+        .error-message {
+            color: #dc2626;
+            margin-top: 1rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="password-screen" id="passwordScreen">
+        <div class="password-form">
+            <h2>Введіть пароль для доступу</h2>
+            <input type="password" class="password-input" id="passwordInput" placeholder="Введіть пароль">
+            <button class="password-button" onclick="checkPassword()">Увійти</button>
+            <p class="error-message" id="errorMessage">Невірний пароль</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Перший урок - Українська мова -->
+        <div class="card">
+            <h1 class="title">Інформація про урок</h1>
+            
+            <div class="info-block">
+                <h2 class="subtitle">Назва уроку:</h2>
+                <p class="text">Українська мова</p>
+            </div>
+            
+            <div class="info-block">
+                <h2 class="subtitle">Викладач:</h2>
+                <p class="text">Людмила Іванівна</p>
+            </div>
+            
+            <div class="info-block">
+                <h2 class="subtitle">Посилання на Zoom:</h2>
+                <a href="zoommtg://zoom.us/join?confno=1234567890" 
+                   class="link"
+                   onclick="window.open('zoommtg://zoom.us/join?confno=1234567890', '_blank'); return false;">
+                    Приєднатися до уроку
+                </a>
+                <div id="passwordContainer1" class="hidden">
+                    <p class="password-text">Пароль для входу: <span id="password1">123456</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Другий урок - Англійська мова -->
+        <div class="card">
+            <h1 class="title">Інформація про урок</h1>
+            
+            <div class="info-block">
+                <h2 class="subtitle">Назва уроку:</h2>
+                <p class="text">Англійська мова</p>
+            </div>
+            
+            <div class="info-block">
+                <h2 class="subtitle">Викладач:</h2>
+                <p class="text">Марія Іванівна</p>
+            </div>
+            
+            <div class="info-block">
+                <h2 class="subtitle">Посилання на Zoom:</h2>
+                <a href="zoommtg://zoom.us/join?confno=9876543210" 
+                   class="link"
+                   onclick="window.open('zoommtg://zoom.us/join?confno=9876543210', '_blank'); return false;">
+                    Приєднатися до уроку
+                </a>
+                <div id="passwordContainer2" class="hidden">
+                    <p class="password-text">Пароль для входу: <span id="password2">654321</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="schedule-container">
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion()">
+                <span>РОЗКЛАД НА ДИСТАНЦІЙНЕ НАВЧАННЯ 2-А</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>ПОНЕДІЛОК</th>
+                            <th>ВІВТОРОК</th>
+                            <th>СЕРЕДА</th>
+                            <th>ЧЕТВЕР</th>
+                            <th>П'ЯТНИЦЯ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1. Математика</td>
+                            <td>1. ЯПС</td>
+                            <td>1. Математика</td>
+                            <td>1. ЯПС</td>
+                            <td>1. Математика</td>
+                        </tr>
+                        <tr>
+                            <td>2. Українська мова</td>
+                            <td>2. ЯПС</td>
+                            <td>2. Англійська мова</td>
+                            <td>2. ЯПС</td>
+                            <td>2. Українська мова</td>
+                        </tr>
+                        <tr>
+                            <td>3. Українська мова</td>
+                            <td>3. ЯПС</td>
+                            <td>3. Українська мова</td>
+                            <td>3. ЯПС</td>
+                            <td>3. Українська мова</td>
+                        </tr>
+                        <tr>
+                            <td>4. Англійська мова</td>
+                            <td>4. ЯПС</td>
+                            <td>4. Українська мова</td>
+                            <td>4. ЯПС</td>
+                            <td>4. Англійська мова</td>
+                        </tr>
+                        <tr>
+                            <td class="async">5. Фіз. вих. – асинхронно</td>
+                            <td class="async">5. Фіз. вих. – асинхронно</td>
+                            <td></td>
+                            <td class="async">5. Мистецтво – асинхронно</td>
+                            <td class="async">5. ЯПС – асинхронно</td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" style="padding-top: 2rem;">
+                                <strong>Час проведення уроків:</strong><br>
+                                1. 9.00-9.30<br>
+                                2. 9.40-10.10<br>
+                                3. 10.30-11.00<br>
+                                4. 11.10-11.40<br>
+                                5. 11.50-12.20
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Пароль для доступу
+        const ACCESS_PASSWORD = "1234"; // Можна змінити на потрібний пароль
+        
+        function checkPassword() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('errorMessage');
+            const screen = document.getElementById('passwordScreen');
+            
+            if (input.value === ACCESS_PASSWORD) {
+                screen.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            } else {
+                error.style.display = 'block';
+                input.value = '';
+            }
+        }
+
+        // Дозволяємо вводити пароль по Enter
+        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // Налаштування для першого уроку
+        const password1 = "123456"; // Можна змінити або видалити
+        const passwordContainer1 = document.getElementById('passwordContainer1');
+        
+        if (password1) {
+            passwordContainer1.classList.remove('hidden');
+        }
+
+        // Налаштування для другого уроку
+        const password2 = "654321"; // Можна змінити або видалити
+        const passwordContainer2 = document.getElementById('passwordContainer2');
+        
+        if (password2) {
+            passwordContainer2.classList.remove('hidden');
+        }
+
+        function toggleAccordion() {
+            const content = document.querySelector('.accordion-content');
+            const arrow = document.querySelector('.arrow');
+            content.classList.toggle('active');
+            arrow.classList.toggle('active');
+        }
+    </script>
+</body>
+</html> 
